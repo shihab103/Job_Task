@@ -77,10 +77,10 @@ export default function Navbar() {
           {/* User Photo */}
           <img
             src={
-              user.photoURL ||
+              // user.photoURL ||
               "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
             }
-            alt={user.displayName || "User Avatar"}
+            alt={user?.displayName || "User Avatar"}
             className="w-8 h-8 rounded-full object-cover"
             onError={(e) =>
               (e.currentTarget.src =
@@ -88,9 +88,9 @@ export default function Navbar() {
             }
           />
           {/* User Name */}
-          {user.displayName && (
+          {user?.displayName && (
             <span className="font-medium text-gray-700">
-              {user.displayName}
+              {user?.displayName}
             </span>
           )}
         </div>
