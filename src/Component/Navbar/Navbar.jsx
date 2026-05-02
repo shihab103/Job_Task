@@ -18,12 +18,16 @@ export default function Navbar() {
   };
 
   const links = (
-    <div className="flex gap-3">
-      <NavLink to="/">Home</NavLink>
+    <div className="flex font-bold gap-12">
+      <NavLink to="/#">Home</NavLink>
+      <NavLink to="/#">Pages</NavLink>
+      <NavLink to="https://keen-sunburst-0bcab4.netlify.app/">
+        Portfolio
+      </NavLink>
+      <NavLink to="/#">Blog</NavLink>
     </div>
   );
 
-  // 🔹 Loading হলে কিছু না দেখাও বা spinner দেখাতে পারো
   if (loading) return null;
 
   return (
@@ -54,49 +58,42 @@ export default function Navbar() {
             {links}
           </ul>
         </div>
-
-        <button onClick={()=>navigate('/')} className="btn btn-ghost text-xl">
-          SRS
-        </button>
+        <img
+          className="w-[127px] cursor-pointer object-contain"
+          onClick={() => navigate("/")}
+          src="https://floka.casethemes.net/wp-content/uploads/2025/05/Logo.png"
+          alt="Floka Logo"
+        />{" "}
       </div>
 
       {/* Desktop Links */}
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{links}</ul>
+      <div className="navbar-center  hidden lg:flex">
+        <ul className="menu  menu-horizontal px-1">{links}</ul>
       </div>
 
       {/* Navbar End */}
       <div className="navbar-end flex items-center gap-2">
-        {user ? (
-          <div className="flex items-center gap-2">
-            {/* User Photo */}
-            <img
-              src={
-                user.photoURL ||
-                "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
-              }
-              alt={user.displayName || "User Avatar"}
-              className="w-8 h-8 rounded-full object-cover"
-              onError={(e) =>
-                (e.currentTarget.src =
-                  "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y")
-              }
-            />
-            {/* User Name */}
-            {user.displayName && (
-              <span className="font-medium text-gray-700">
-                {user.displayName}
-              </span>
-            )}
-            <button onClick={handleLogOut} className="btn">
-              Log Out
-            </button>
-          </div>
-        ) : (
-          <button onClick={() => navigate("/login")} className="btn">
-            Login
-          </button>
-        )}
+        <div className="flex items-center gap-2">
+          {/* User Photo */}
+          <img
+            src={
+              user.photoURL ||
+              "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
+            }
+            alt={user.displayName || "User Avatar"}
+            className="w-8 h-8 rounded-full object-cover"
+            onError={(e) =>
+              (e.currentTarget.src =
+                "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y")
+            }
+          />
+          {/* User Name */}
+          {user.displayName && (
+            <span className="font-medium text-gray-700">
+              {user.displayName}
+            </span>
+          )}
+        </div>
       </div>
     </div>
   );
